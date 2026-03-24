@@ -1,4 +1,4 @@
-﻿const apiURL = "https://script.google.com/macros/s/AKfycbwuWHKYDRC4tib9NAxDuR-sgCQ0pvVtTFut62jPQBqJCnT83up8RhdUiQw35evH9h_SzQ/exec";
+﻿const apiURL = "https://script.google.com/macros/s/AKfycbyKCnmlRS4HtEA4hCq3QMoxPQONj0Cl0xaGeVwKRQIhxFMjftvowfuPbzwxJoXfgOIT/exec";
 let allData = [];
 let currentState = { view: 'home', category: '', semester: '' };
 
