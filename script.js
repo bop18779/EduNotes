@@ -28,13 +28,17 @@ function renderHome() {
 }
 
 function handleCategoryClick(cat) {
-    if (cat.includes('Under Graduate') || cat.includes('Post Graduate')) {
+    // This looks for 'Undergraduate' or 'Post-Graduate' 
+    // It is case-insensitive and ignores extra spaces
+    const checkCat = cat.toLowerCase().trim();
+    
+    if (checkCat.includes('undergraduate') || checkCat.includes('post-graduate') || checkCat.includes('degree')) {
         renderSemesters(cat);
     } else {
+        // This is for Class VIII, IX, etc.
         renderTopics(cat, 'N/A');
     }
 }
-
 function renderSemesters(cat) {
     currentState = { view: 'semesters', category: cat };
     document.getElementById('backBtn').classList.remove('hidden');
