@@ -28,7 +28,7 @@ function renderHome() {
 }
 
 function handleCategoryClick(cat) {
-    if (cat.includes('Undergraduate') || cat.includes('Post-Graduate')) {
+    if (cat.includes('Under Graduate') || cat.includes('Post Graduate')) {
         renderSemesters(cat);
     } else {
         renderTopics(cat, 'N/A');
