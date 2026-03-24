@@ -3,35 +3,19 @@ let allData = [];
 let currentState = { view: 'home', category: '', semester: '' };
 
 async function init() {
-    const loader = document.getElementById('loader');
-    const display = document.getElementById('dynamic-content');
-
     try {
-        // We add a cache-buster to ensure we get fresh data
-        const response = await fetch(apiURL + "?nocache=" + new Date().getTime());
-        
+        // Added 'redirect: follow' to handle Google's architecture
+        const response = await fetch(apiURL, { redirect: 'follow' }); 
         if (!response.ok) throw new Error('Network response was not ok');
         
         allData = await response.json();
         
-        if (allData.error) {
-            display.innerHTML = `<p style="color:red">Backend Error: ${allData.error}</p>`;
-            return;
-        }
-
-        loader.classList.add('hidden');
+        // Hide loader and show home
+        document.getElementById('loader').classList.add('hidden');
         renderHome();
-        console.log("Data Loaded Successfully:", allData);
-    } catch (e) {
-        console.error("Fetch error:", e);
-        loader.innerHTML = `
-            <div style="padding:20px; border:2px solid red; border-radius:10px;">
-                <h3>⚠️ Connection Error</h3>
-                <p>Could not connect to the database.</p>
-                <p><small>${e.message}</small></p>
-                <button onclick="location.reload()">Try Again</button>
-            </div>
-        `;
+    } catch (e) { 
+        console.error("Loading failed:", e);
+        document.getElementById('loader').innerHTML = "⚠️ Connection Error. Please refresh.";
     }
 }
 
